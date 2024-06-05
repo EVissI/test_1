@@ -26,8 +26,8 @@ public class Main {
         TicketList ticketList = mapper.readValue(new File("src/main/resources/tickets.json"), TicketList.class);
 
         for (Ticket ticket : ticketList.getTickets()) {
-            allPrice.add(ticket.getPrice());
             if (Objects.equals(ticket.getOrigin(), "VVO") && Objects.equals(ticket.getDestination(), "TLV")) {
+                allPrice.add(ticket.getPrice());
                 Date departureDate = formatter.parse(ticket.getDeparture_date() + ";" + ticket.getDeparture_time());
                 Date arrivalDate = formatter.parse(ticket.getArrival_date() + ";" + ticket.getArrival_time());
                 Duration duration = Duration.between(departureDate.toInstant(), arrivalDate.toInstant());
